@@ -1,0 +1,18 @@
+version: 3
+
+vars:
+  COMPOSE_OPTIONS: -p dagster-dependencies
+
+tasks:
+  start:
+    cmds:
+      - docker compose {{.COMPOSE_OPTIONS}} up
+
+  stop:
+    cmds:
+      - docker compose {{.COMPOSE_OPTIONS}} stop
+
+  delete:
+    dir: ./testing_dependencies
+    cmds:
+      - docker compose {{.COMPOSE_OPTIONS}} down -v

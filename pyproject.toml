@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "demo-dagster"
+version = "0.1.0"
+description = ""
+authors = ["Mohammad Hakim Adiprasetya <hakim.adiprasetya@accelbyte.net>"]
+readme = "README.md"
+packages = [{include = "demo_dagster"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+dagster = "^1.1.21"
+dagit = "^1.1.21"
+numpy = "^1.24.2"
+pandas = "^1.5.3"
+mysql-connector-python = "^8.0.32"
+openpyxl = "^3.1.1"
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.0.2"
+pytest = "^7.2.2"
+jupyter = "^1.0.0"
+
+[tool.dagster]
+module_name = "demo_dagster"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
