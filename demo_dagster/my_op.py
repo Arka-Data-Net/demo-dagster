@@ -1,6 +1,7 @@
 from dagster import op
 import mysql.connector
 import pandas as pd
+import os
 
 
 @op
@@ -16,7 +17,11 @@ def my_op(context):
 
     mycursor = mydb.cursor(buffered=True)
 
-    df = pd.read_excel("dataset.xlsx", names=None, engine='openpyxl')
+    DATA_SOURCE_LOCATION = os.path.abspath(os.path.join(os.path.dirname(
+        __file__), 'dataset.xlsx'))
+    context.log.info(DATA_SOURCE_LOCATION)
+
+    df = pd.read_excel(DATA_SOURCE_LOCATION, names=None, engine='openpyxl')
     df = df.where((pd.notnull(df)), None)
 
     df = df.where(df != "#REF!", None)
