@@ -32,3 +32,14 @@ tasks:
     cmds:
       - "{{.VENV_CONTEXT}} dagster dev"
   dagit: "{{.VENV_CONTEXT}} dagit -f {{.SOURCE_FOLDER}}{{.FILE | default .DEFAULT_FILE}}"
+  build:
+    cmds:
+      - docker build . -f ./docker/Dockerfile -t docker_user_code
+  compose:
+    dir: docker
+    cmds:
+      - docker compose up --build
+  update:
+    dir: docker
+    cmds:
+      - docker compose up --build --force-recreate --no-deps -d docker_user_code
